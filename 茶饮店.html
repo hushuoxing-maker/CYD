@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>即梦AI · 饮品店门头提示词工厂 | 20组专业版</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(145deg, #f0f7ff 0%, #e1eefc 100%);
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            padding: 2rem 1.5rem;
+            display: flex;
+            justify-content: center;
+            color: #103450;
+        }
+
+        .container {
+            max-width: 1600px;
+            width: 100%;
+        }
+
+        /* 设计师角色头 */
+        .master-header {
+            background: rgba(255,255,255,0.7);
+            backdrop-filter: blur(12px);
+            border-radius: 70px;
+            padding: 1.8rem 2.8rem;
+            margin-bottom: 2.5rem;
+            border: 1px solid rgba(255,255,255,0.9);
+            box-shadow: 0 25px 35px -15px rgba(30,70,100,0.2);
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .master-title h1 {
+            font-size: 2.3rem;
+            font-weight: 700;
+            background: linear-gradient(145deg, #0f4a5c, #1f6d8f);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.02em;
+        }
+
+        .master-title p {
+            color: #2b6385;
+            font-weight: 500;
+            margin-top: 0.4rem;
+            font-size: 1.05rem;
+        }
+
+        .master-badge {
+            background: #124a66;
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.2rem;
+            box-shadow: 0 12px 18px -8px #093247;
+            border: 1px solid #5fa3d9;
+            white-space: nowrap;
+        }
+
+        /* 双栏工作区 */
+        .workspace {
+            display: grid;
+            grid-template-columns: 1.1fr 1.9fr;
+            gap: 2rem;
+        }
+
+        /* 左侧输入面板 */
+        .input-panel {
+            background: rgba(255,255,255,0.75);
+            backdrop-filter: blur(16px);
+            border-radius: 48px;
+            padding: 2.2rem 2rem;
+            border: 1px solid rgba(255,255,255,0.9);
+            box-shadow: 0 25px 40px -18px #1e4765;
+            height: fit-content;
+        }
+
+        .panel-icon {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: #0b3f5c;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .input-group {
+            margin-bottom: 2rem;
+        }
+
+        .input-group label {
+            display: block;
+            font-weight: 600;
+            font-size: 0.98rem;
+            color: #1b5277;
+            margin-bottom: 0.6rem;
+            letter-spacing: 0.2px;
+        }
+
+        .input-group input, .input-group textarea {
+            width: 100%;
+            padding: 1.1rem 1.3rem;
+            background: white;
+            border: 2px solid #e2eefc;
+            border-radius: 34px;
+            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+            transition: 0.2s;
+            outline: none;
+            color: #13415b;
+        }
+
+        .input-group input:focus, .input-group textarea:focus {
+            border-color: #5399d6;
+            box-shadow: 0 0 0 5px rgba(70, 150, 230, 0.15);
+        }
+
+        .input-group textarea {
+            min-height: 90px;
+            resize: vertical;
+        }
+
+        .row-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.2rem;
+        }
+
+        .btn-big {
+            background: #1b5379;
+            color: white;
+            border: none;
+            padding: 1.4rem 2rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.3rem;
+            cursor: pointer;
+            width: 100%;
+            transition: 0.2s;
+            margin: 1.5rem 0 1.8rem 0;
+            box-shadow: 0 25px 30px -12px #124462;
+            border: 1px solid #5799cf;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-big:hover {
+            background: #226d9c;
+            transform: scale(1.02);
+            box-shadow: 0 28px 35px -12px #19537a;
+        }
+
+        .design-notes {
+            background: #e5f1fe;
+            border-radius: 32px;
+            padding: 1.5rem;
+            font-size: 0.95rem;
+            color: #145377;
+            border-left: 8px solid #4794d1;
+            line-height: 1.6;
+        }
+
+        .design-notes strong {
+            font-size: 1rem;
+            display: block;
+            margin-bottom: 0.4rem;
+        }
+
+        /* 右侧结果区 - 20组提示词 */
+        .result-panel {
+            background: rgba(255,255,255,0.7);
+            backdrop-filter: blur(14px);
+            border-radius: 48px;
+            padding: 2.2rem 2rem;
+            border: 1px solid rgba(255,255,255,0.9);
+            box-shadow: 0 25px 40px -18px #1d4560;
+        }
+
+        .result-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .result-header h2 {
+            font-size: 1.9rem;
+            font-weight: 650;
+            color: #083753;
+        }
+
+        .count-badge {
+            background: white;
+            border-radius: 50px;
+            padding: 0.5rem 2rem;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #1f6190;
+            border: 1px solid #c7e0fa;
+        }
+
+        .prompt-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            max-height: 650px;
+            overflow-y: auto;
+            padding-right: 0.5rem;
+        }
+
+        .prompt-card {
+            background: white;
+            border-radius: 28px;
+            padding: 1.5rem 1.8rem;
+            border-left: 10px solid;
+            box-shadow: 0 10px 18px -10px rgba(30,70,100,0.15);
+            transition: 0.2s;
+            font-size: 0.98rem;
+            line-height: 1.65;
+            color: #104267;
+            word-break: break-word;
+        }
+
+        .prompt-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 15px 22px -10px #2f6792;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.8rem;
+            font-weight: 700;
+            color: #1d5b89;
+            font-size: 1rem;
+        }
+
+        .copy-btn {
+            background: #ecf5fd;
+            border: 1px solid #b8d6f5;
+            border-radius: 40px;
+            padding: 0.3rem 1.4rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #1f6b9e;
+            cursor: pointer;
+            transition: 0.15s;
+        }
+
+        .copy-btn:hover {
+            background: #1f6b9e;
+            color: white;
+            border-color: #1f6b9e;
+        }
+
+        .negative-block {
+            margin-top: 2rem;
+            background: rgba(215, 235, 255, 0.6);
+            border-radius: 36px;
+            padding: 1.2rem 1.8rem;
+            font-size: 0.95rem;
+            color: #0f4970;
+            border: 1px solid #bdd8f7;
+            backdrop-filter: blur(4px);
+            font-style: italic;
+        }
+
+        .footer-note {
+            margin-top: 2.8rem;
+            text-align: center;
+            color: #2d668d;
+            font-size: 1rem;
+            border-top: 1px solid rgba(255,255,255,0.6);
+            padding-top: 2rem;
+        }
+
+        @media (max-width: 1100px) {
+            .workspace { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- 专家头部 -->
+    <div class="master-header">
+        <div class="master-title">
+            <h1>🥤 即梦AI · 饮品店门头大师</h1>
+            <p>20组专业提示词 · 高识别度+轻松愉悦+年轻友好 | 茶饮/咖啡/果饮/轻饮</p>
+        </div>
+        <div class="master-badge">
+            ⚡ 即梦AI专用 · 一键20组
+        </div>
+    </div>
+
+    <!-- 主工作区 -->
+    <div class="workspace">
+        <!-- 左侧输入区 -->
+        <div class="input-panel">
+            <div class="panel-icon">
+                <span>🧋 输入品牌DNA</span>
+            </div>
+
+            <div class="input-group">
+                <label>🥤 行业名称 (如茶饮/咖啡/果饮/轻饮)</label>
+                <input type="text" id="industry" placeholder="例：鲜果茶 / 精品咖啡 / 柠檬茶" value="鲜果茶">
+            </div>
+
+            <div class="input-group">
+                <label>🏷️ 小吃店名称 / 品牌名</label>
+                <input type="text" id="shopName" placeholder="例：喜茶 / 柠季 / Manner" value="喜茶">
+            </div>
+
+            <div class="input-group">
+                <label>📢 主标题 / 卖点文案</label>
+                <input type="text" id="slogan" placeholder="例：灵感之茶 / 0卡糖鲜果" value="灵感之茶">
+            </div>
+
+            <div class="row-2">
+                <div class="input-group">
+                    <label>🎨 风格关键词1</label>
+                    <input type="text" id="style1" placeholder="极简/清新/奶油" value="极简清新">
+                </div>
+                <div class="input-group">
+                    <label>🎨 风格关键词2</label>
+                    <input type="text" id="style2" placeholder="温柔/潮流/马卡龙" value="奶油色系">
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>✨ 其他需求 / 氛围描述 (可选)</label>
+                <textarea id="extra" placeholder="例：通透玻璃，绿植点缀，柔和光影，门口有休闲座椅">通透玻璃，绿植点缀，柔和光影</textarea>
+            </div>
+
+            <button class="btn-big" id="generateBtn">✨ 生成20组即梦AI提示词</button>
+
+            <!-- 设计策略速览 -->
+            <div class="design-notes">
+                <strong>🎯 饮品店门头设计策略</strong>
+                明亮不刺眼 · 轻盈不压街 · 高识别配色(奶白/浅绿/橙粉/薄荷) · 亚克力发光字 · 软膜灯箱 · 圆润无衬线字体 · 拍照传播价值 · 非摊位/非临时结构 · 落地玻璃门 · 产品海报白天自然光
+            </div>
+        </div>
+
+        <!-- 右侧结果：20组提示词列表 -->
+        <div class="result-panel">
+            <div class="result-header">
+                <h2 id="resultHeading">“喜茶” 20组即梦AI提示词</h2>
+                <div class="count-badge" id="promptCount">20/20 组</div>
+            </div>
+
+            <!-- 提示词列表容器 -->
+            <div class="prompt-grid" id="promptList">
+                <!-- 动态JS填充 -->
+            </div>
+
+            <!-- 负向提示隐含语义 (固定) -->
+            <div class="negative-block">
+                ⚡ 负向提示隐含语义 (无需手动输入): 非摊位、非推车、非夜市临时铺、非挂靠招牌、非附墙门头、非临时结构、非局部门头
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-note">
+        ⚡ 资深饮品店门头设计师 · 所有方案可施工落地 · 适配真实尺度 · 即梦AI一键生图
+    </div>
+</div>
+
+<script>
+    (function() {
+        // DOM 元素
+        const industryInput = document.getElementById('industry');
+        const shopNameInput = document.getElementById('shopName');
+        const sloganInput = document.getElementById('slogan');
+        const style1Input = document.getElementById('style1');
+        const style2Input = document.getElementById('style2');
+        const extraInput = document.getElementById('extra');
+        const generateBtn = document.getElementById('generateBtn');
+        const promptListDiv = document.getElementById('promptList');
+        const resultHeading = document.getElementById('resultHeading');
+        const promptCountSpan = document.getElementById('promptCount');
+
+        // 更新标题
+        function updateHeading() {
+            const name = shopNameInput.value.trim() || "饮品店";
+            resultHeading.innerText = `“${name}” 20组即梦AI提示词`;
+        }
+
+        // ---------- 核心生成函数：20组提示词 ----------
+        function generate20Prompts(industry, shopName, slogan, style1, style2, extra) {
+            // 处理空值
+            const ind = industry.trim() || "鲜果茶";
+            const name = shopName.trim() || "茶颜";
+            const tag = slogan.trim() || "新鲜现制";
+            const st1 = style1.trim() || "清新";
+            const st2 = style2.trim() || "极简";
+            const ext = extra.trim() ? `，${extra.trim()}` : '';
+
+            // 截断过长的广告语用于展示
+            const shortTag = tag.length > 15 ? tag.substring(0,12)+"…" : tag;
+
+            // ---------- 丰富的变化库 (20组尽量不重复) ----------
+            // 配色库 (低饱和轻盈色)
+            const colorPalette = [
+                "奶白+薄荷绿", "浅咖+奶油黄", "樱花粉+暖白", "橙子色+米黄", "淡蓝+柔白",
+                "抹茶绿+原木色", "淡紫+浅灰", "柠檬黄+白色", "水蓝色+银灰", "蜜桃色+奶白",
+                "豆绿+浅杏", "香槟粉+象牙白", "雾霾蓝+浅灰", "芒果黄+白", "蜜瓜绿+奶白",
+                "西柚色+米色", "浅藕荷+柔白", "牛油果绿+原木", "海盐蓝+纯白", "杏仁色+暖白"
+            ];
+            // 字体气质
+            const fontVibes = [
+                "圆润无衬线字体", "现代几何字体", "手写感圆体", "细线条无衬线", "可爱胖圆体",
+                "清晰简洁黑体", "柔和幼圆体", "高识别度综艺体", "极细现代字体", "稳重圆体",
+                "软萌手写字体", "简约黑体", "复古但清新的衬线体", "未来感细线体", "圆角标题字",
+                "厚重大气但轻盈的立体字", "气泡感字体", "糖果色描边字", "极简无装饰字", "柔光质感字"
+            ];
+            // 灯光描述
+            const lightings = [
+                "暖白均匀发光，亚克力背光", "中性光洗墙，明亮不刺眼", "软膜灯箱透光，整体柔和",
+                "发光字+线性灯带，干净清爽", "防眩光射灯+透光亚克力板", "隐藏灯带营造漂浮感",
+                "橱窗内透光，门头整体亮堂", "吸塑发光字+氛围软膜", "暖黄光点缀，清爽不油腻",
+                "高显指射灯突出品牌标识", "渐变灯膜+背光字", "微光反射板+隐藏光源",
+                "上下洗墙灯突出材质", "点状嵌入式灯带", "霓虹灯带勾勒轮廓",
+                "超薄灯箱均匀打亮", "悬浮式发光logo", "磨砂透光板+背光",
+                "暖色光晕叠加", "中性光+局部彩光点缀"
+            ];
+            // 材质搭配 (轻量化)
+            const materials = [
+                "铝塑板底板+亚克力发光字", "艺术涂料墙面+吸塑字", "软膜灯箱+磨砂亚克力",
+                "喷漆金属板+立体字", "阳光板+透光贴膜", "微水泥+内嵌灯条",
+                "白色铝板+霓虹灯带", "渐变亚克力+金属收边", "水磨石质感涂料+背光字",
+                "玻璃贴膜+悬浮发光标识", "烤漆玻璃+背光字", "杜邦纸透光膜+金属字",
+                "透明亚克力盒+发光字", "拉丝金属板+立体logo", "肌理涂料+内透光字",
+                "磨砂玻璃+贴膜字", "不锈钢烤漆+亚克力灯箱", "生态板+霓虹灯",
+                "多层板烤漆+发光字", "软石涂料+透光板"
+            ];
+            // 橱窗/入口
+            const windows = [
+                "落地大玻璃展示店内", "无框玻璃+极简推拉门", "橱窗内产品陈列吸引视线",
+                "通透玻璃贴磨砂膜", "落地玻璃配金属门框", "玻璃橱窗搭配吧台矮墙",
+                "整面落地窗引入自然光", "玻璃门+侧面陈列窗", "落地玻璃+木质门把手",
+                "超白玻展示内部空间", "落地玻璃+金属收边", "隐藏式玻璃推拉门",
+                "大面玻璃+电动卷帘(隐藏)", "玻璃橱窗+休闲外摆区", "落地玻璃+发光门框",
+                "无框玻璃+地弹簧门", "玻璃砖局部+通透玻璃", "室内外视线通透无阻",
+                "落地玻璃+细框金属", "玻璃门头+内侧产品展示"
+            ];
+            // 产品海报/氛围细节
+            const posters = [
+                "门口产品海报灯箱", "落地海报架展示新品", "玻璃贴膜海报图案",
+                "电子屏海报展示饮品", "立式海报+灯光", "橱窗海报吸引视线",
+                "吊挂式海报轻巧", "A型海报外摆", "灯箱海报高亮显示",
+                "墙面嵌入式海报屏"
+            ];
+            // 额外氛围词
+            const vibes = [
+                "门口绿植点缀", "一杯冰饮视觉暗示", "果香氛围", "阳光洒落的感觉",
+                "干净街铺氛围", "轻松下午茶感", "年轻潮流气息", "ins风拍照背景",
+                "清凉夏日感", "温暖秋日色调", "多肉植物装饰", "水磨石地面延伸",
+                "休闲卡座外摆", "遮阳棚+室外小桌", "单车停靠点",
+                "霓虹灯画装饰", "墙面涂鸦元素", "季节性花艺", "暖帘+木椅",
+                "宠物友好水碗"
+            ];
+
+            const prompts = [];
+            for (let i = 0; i < 20; i++) {
+                // 循环取不同资源，保证每组不同
+                const color = colorPalette[i % colorPalette.length];
+                const font = fontVibes[i % fontVibes.length];
+                const light = lightings[i % lightings.length];
+                const material = materials[i % materials.length];
+                const windowDesc = windows[i % windows.length];
+                const poster = posters[i % posters.length];
+                const vibe = vibes[i % vibes.length];
+
+                // 构建提示词 —— 完全符合输出规则
+                let prompt = `${i+1}. ${name}，${ind}，${tag}，${st1}+${st2}风格${ext}，完整正立面、落地玻璃门、品牌名“${name}”、广告语“${shortTag}”、产品海报白天自然光（${poster}）、高辨识度、高对比配色（${color}），${font}，${material}，${light}，${windowDesc}，${vibe}，非摊位、非附墙、非临时结构。门头正立面效果完全展示`;
+
+                prompts.push(prompt);
+            }
+            return prompts;
+        }
+
+        // 渲染到页面
+        function renderPrompts() {
+            const industry = industryInput.value;
+            const shopName = shopNameInput.value;
+            const slogan = sloganInput.value;
+            const style1 = style1Input.value;
+            const style2 = style2Input.value;
+            const extra = extraInput.value;
+
+            const prompts = generate20Prompts(industry, shopName, slogan, style1, style2, extra);
+            updateHeading();
+            promptCountSpan.innerText = `20/20 组`;
+
+            // 清空并填充
+            promptListDiv.innerHTML = '';
+            prompts.forEach((p, index) => {
+                const card = document.createElement('div');
+                card.className = 'prompt-card';
+                // 随机左边框色 (轻快色系)
+                const borderColors = ['#f9b8c5', '#a7cfdf', '#b8e0b8', '#ffe1a3', '#d4b5e8', '#fbc0a6', '#a3d0f5', '#f5c6a0'];
+                card.style.borderLeftColor = borderColors[index % borderColors.length];
+
+                const header = document.createElement('div');
+                header.className = 'card-header';
+                header.innerHTML = `<span>提示词 #${index+1}</span>`;
+
+                const copyBtn = document.createElement('button');
+                copyBtn.className = 'copy-btn';
+                copyBtn.innerText = '复制';
+                copyBtn.addEventListener('click', () => {
+                    navigator.clipboard.writeText(p).then(() => {
+                        copyBtn.innerText = '已复制!';
+                        setTimeout(() => { copyBtn.innerText = '复制'; }, 1500);
+                    }).catch(() => alert('复制失败，手动复制即可'));
+                });
+
+                header.appendChild(copyBtn);
+                card.appendChild(header);
+
+                const content = document.createElement('div');
+                content.innerText = p;
+                card.appendChild(content);
+
+                promptListDiv.appendChild(card);
+            });
+        }
+
+        // 绑定生成按钮
+        generateBtn.addEventListener('click', renderPrompts);
+
+        // 输入变化更新标题
+        shopNameInput.addEventListener('input', updateHeading);
+        industryInput.addEventListener('input', updateHeading);
+
+        // 页面加载自动生成一次
+        window.addEventListener('load', () => {
+            renderPrompts();
+        });
+    })();
+</script>
+</body>
+</html>
